@@ -11,9 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
+    @IBOutlet weak var choice2Button: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var choice3Button: UIButton!
+    @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
     
     var quizBrain = QuizBrain()
@@ -44,10 +45,15 @@ class ViewController: UIViewController {
         questionLabel.text = quizBrain.getQuestionText()
         progressBar.progress = quizBrain.getProgress()
         scoreLabel.text = "Score: \(quizBrain.getScore())"
+        choice1Button.setTitle(quizBrain.getAnswerText(0), for: UIControl.State.normal)
+        choice2Button.setTitle(quizBrain.getAnswerText(1), for: UIControl.State.normal)
+        choice3Button.setTitle(quizBrain.getAnswerText(2), for: UIControl.State.normal)
+
         let seconds = 0.2
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            self.trueButton.backgroundColor = UIColor.clear
-            self.falseButton.backgroundColor = UIColor.clear
+            self.choice1Button.backgroundColor = UIColor.clear
+            self.choice2Button.backgroundColor = UIColor.clear
+            self.choice3Button.backgroundColor = UIColor.clear
         }
     }
 }
